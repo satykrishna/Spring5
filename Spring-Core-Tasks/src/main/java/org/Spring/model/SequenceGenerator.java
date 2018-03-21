@@ -46,4 +46,9 @@ public class SequenceGenerator {
 		builder.append(prefix).append(initial).append(counter.getAndIncrement()).append(suffix);
 		return builder.toString();
 	}
+	
+	@Override
+	public String toString() {
+		return getSequence();
+	}
 }

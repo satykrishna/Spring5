@@ -7,7 +7,6 @@
     <artifactId>Spring5-Series</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>appress.spring5.tutorial</groupId>
   <artifactId>Spring-Core-Tasks</artifactId>
   <version>1.0-SNAPSHOT</version>
   <name>Spring-Core-Tasks</name>
@@ -31,6 +30,10 @@
   	<dependency>
   		<groupId>junit</groupId>
   		<artifactId>junit</artifactId>
+  	</dependency>
+  	<dependency>
+  		<groupId>log4j</groupId>
+  		<artifactId>log4j</artifactId>
   	</dependency>
   </dependencies>
 </project>
