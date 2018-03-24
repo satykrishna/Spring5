@@ -39,3 +39,5 @@ buildNumber.properties
 hs_err_pid*
 
 */log4j.properties
+
+logs/
