@@ -1,11 +1,14 @@
 package org.Spring.Core.Tasks;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Properties;
 
 import org.Spring.Core.Scope.ShoppingCart;
 import org.Spring.Core.config.ShopConfiguration;
 import org.Spring.Core.dao.SequenceDAO;
+import org.Spring.Core.i18N.Cashier;
 import org.Spring.model.Product;
 import org.Spring.model.SequenceGenerator;
 import org.apache.log4j.Logger;
@@ -71,8 +74,25 @@ public class App {
 		logger.info(properties);
 	}
 	
-	public static void main(String[] args) throws IOException {
+	private static void resolveTextMessagesORsupportforI18N() throws  Exception {
+		appContext = new AnnotationConfigApplicationContext("org.Spring.Core.config");
+		String alert = appContext.getMessage("alert.checkout",null, Locale.US);
+		String alertInventory = appContext.getMessage("alert.inventory.checkout", new Object[]{"[DVD-RW 3.0]", new Date()}, Locale.US);
+		logger.info("The I18N message for alert.checkout is: " + alert);
+		logger.info("The I18N message for alert.inventory.checkout is:" + alertInventory);
+		Cashier cashier = appContext.getBean(Cashier.class);
+		Product aaa = appContext.getBean("aaa", Product.class);
+		Product cdrw = appContext.getBean("cdrw", Product.class);
+		Product dvdrw = appContext.getBean("dvdrw", Product.class);
+		ShoppingCart cart1 = appContext.getBean("shoppingCart", ShoppingCart.class);
+		cart1.addItem(aaa);
+		cart1.addItem(cdrw);
+		cashier.checkout(cart1);
+	}
+	
+	public static void main(String[] args) throws Exception {
 		testBannerLoader();
 		readFileExplictlyUsingSpringIOC();
+		resolveTextMessagesORsupportforI18N();
 	}
 }

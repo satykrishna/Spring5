@@ -1,5 +1,9 @@
 package org.Spring.Core.config;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.Spring.Core.Factory.ProductCreator;
 import org.Spring.Core.Service.impl.BannerLoader;
 import org.Spring.model.Battery;
 import org.Spring.model.Disc;
@@ -10,10 +14,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.io.Resource;
 
 @Configuration
-@ComponentScan("org.Spring.Core.Scope")
+@ComponentScan("org.Spring.Core.Scope, org.Spring.Core.i18N, org.Spring.Core.PostProcessor")
 @PropertySource("classpath:discounts.properties")
 public class ShopConfiguration {
 
@@ -60,4 +65,55 @@ public class ShopConfiguration {
 	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceHolderConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();
 	}
+	
+	@Bean
+	public ReloadableResourceBundleMessageSource messageSource(){
+		ReloadableResourceBundleMessageSource messageSource = 
+				new ReloadableResourceBundleMessageSource();
+		messageSource.setBasenames("classpath:messages");
+		messageSource.setCacheSeconds(2);
+		return messageSource;
+	}
+	
+	@Bean
+	public Product aaa1() {
+		return ProductCreator.createProductUsingStaticMethod("AAA");
+	}
+	
+	@Bean
+	public Product cdrw1(){
+		return ProductCreator.createProductUsingStaticMethod("cdrw");
+	}
+	
+	@Bean
+	public  Product dvdrw1() {
+		return ProductCreator.createProductUsingStaticMethod("dvdrw");
+	}
+	
+	@Bean
+	public ProductCreator createProductCreatorFactory() {
+		ProductCreator productCreator = new ProductCreator();
+		Map<String, Product> products = new HashMap<String, Product>();
+		products.put("aaa", new Battery("aaa", 2.4));
+		products.put("cdrw", new Disc("cdrw", 1.4));
+		products.put("dvdrw", new Disc("dvdrw", 3.4));
+		productCreator.setProducts(products);
+		return productCreator;
+	}
+	
+	@Bean 
+	public Product aaa2() {
+		return createProductCreatorFactory().createProductUsingInstanceMethod("aaa");
+	}
+	
+	@Bean
+	public Product cdrw2() {
+		return createProductCreatorFactory().createProductUsingInstanceMethod("cdrw");
+	}
+	
+	@Bean
+	public Product dvdrw2(){
+		return createProductCreatorFactory().createProductUsingInstanceMethod("dvdrw");
+	}
+	
 }
