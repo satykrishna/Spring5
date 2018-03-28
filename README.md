@@ -68,6 +68,21 @@ To enable Aspect Oriented Programming in Spring IOC, add
 *   Five types of advices @Before, @After, @AfterReturning, @AfterThrowing, @Around
 
 
+	/*
+	 * First argument indicates public, private, protecte
+	 * two dots at the end indicate any arguments
+	 */
+	@Before("execution(* spring.aspect.service.ArithmeticCalculator.add(..))")
+	public void logBefore() {
+		logger.info("The method add() begins");
+	}
 
 
-   
+
+ 
+
+ JointPoint argument is used so that the advice can get to know the details of the 
+ jointPointcut it is advising about.
+ 
+ 
+ @Order(0)
