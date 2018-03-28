@@ -3,6 +3,7 @@ package org.Spring.Core.config;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.Spring.Core.Factory.DiscountFactoryBean;
 import org.Spring.Core.Factory.ProductCreator;
 import org.Spring.Core.Service.impl.BannerLoader;
 import org.Spring.model.Battery;
@@ -115,5 +116,32 @@ public class ShopConfiguration {
 	public Product dvdrw2(){
 		return createProductCreatorFactory().createProductUsingInstanceMethod("dvdrw");
 	}
+	
+	@Bean
+	public DiscountFactoryBean discountFactoryBeanAAA() {
+		DiscountFactoryBean factory = new DiscountFactoryBean();
+		factory.setProduct(aaa());
+		factory.setDiscount(0.1);
+		return factory;
+	}
+	
+	@Bean
+	public DiscountFactoryBean discountFactoryBeanCDRW() {
+		DiscountFactoryBean factory = new DiscountFactoryBean();
+		factory.setProduct(cdrw());
+		factory.setDiscount(0.4);
+		return factory;
+	}
+	
+	@Bean
+	public DiscountFactoryBean discountFactoryBeanDVDRW() {
+		DiscountFactoryBean factory = new DiscountFactoryBean();
+		factory.setProduct(dvdrw());
+		factory.setDiscount(0.9);
+		return factory;
+		
+	}
+	
+	
 	
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>appress.spring5.tutorial</groupId>
@@ -13,6 +14,18 @@
 
 	<dependencyManagement>
 		<dependencies>
+
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjtools</artifactId>
+				<version>${aspect.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>junit</groupId>
@@ -78,10 +91,11 @@
 		<junit.version>4.12</junit.version>
 		<log4j.version>1.2.17</log4j.version>
 		<spring.version>5.0.1.RELEASE</spring.version>
+		<aspect.version>1.8.13</aspect.version>
 	</properties>
 
 
-  <modules>
-    <module>Spring-Core-Tasks</module>
-  </modules>
+	<modules>
+		<module>Spring-Core-Tasks</module>
+	</modules>
 </project>

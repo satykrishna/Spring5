@@ -45,4 +45,29 @@ to resolve ambiguity
    
    @Lazy, @DependsOn
    
-   CUSTOMBeanPostProcessor is used for all Beans
+   CUSTOMBeanPostProcessor is used for all Beans to postProcessBeforeInitialization and postProcessAfterInitialization. It should implement BeanPostProcessor interface.
+   
+   @Profile - Used to load beans based on a profile.
+   
+   @Profile({"Summer", "Winter"}) - Creates two profile summer, winter
+   
+   -Dspring.profiles.active=summer,winter
+   
+   -Dspring.profiles.default - Sets the default profile
+   
+   
+###Spring Aspect
+
+To enable Aspect Oriented Programming in Spring IOC, add 
+
+@EnableAspectJAutoProxy to one of the Spring related Configuration classes
+
+
+*   @Aspect : To define an aspect, annotate a class with this annotation
+
+*   Five types of advices @Before, @After, @AfterReturning, @AfterThrowing, @Around
+
+
+
+
+   
