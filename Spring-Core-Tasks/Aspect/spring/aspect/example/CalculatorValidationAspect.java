@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class CalculatorValidationAspect {
 
 
-	@Before("execution( * *.*(..))")
+	@Before("spring.aspect.example.PointCutDefinitionsForCalculator.loggingOperationPointCut()")
 	public void validateBefore(JoinPoint joinPoint) throws IllegalArgumentException {
 		Arrays.stream(joinPoint.getArgs()).forEach(this::validate);
 	}
@@ -24,5 +24,6 @@ public class CalculatorValidationAspect {
 		double value = (double) val;
 		if(value < 0) throw new IllegalArgumentException("Illegal Argument " + value);
  	}
+	
 	
 }

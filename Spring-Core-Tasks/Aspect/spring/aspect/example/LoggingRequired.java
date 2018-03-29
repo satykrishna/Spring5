@@ -8,8 +8,8 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+@Target({  METHOD , TYPE})
 @Retention(RUNTIME)
-@Target({ TYPE, METHOD })
 @Documented
 public @interface LoggingRequired {
 

@@ -7,7 +7,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @Configuration
 @EnableAspectJAutoProxy
 @ComponentScan(basePackages={"spring.aspect.service.impl", 
-							 "spring.aspect.example"})
+							 "spring.aspect.example",
+							 "spring.aspect.introductionAspect.example"})
 public class CalculatorConfiguration {
 
 

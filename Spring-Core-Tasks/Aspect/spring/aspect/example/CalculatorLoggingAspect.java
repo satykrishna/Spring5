@@ -90,4 +90,17 @@ public class CalculatorLoggingAspect {
 		+"\n Target class : "+joinPoint.getTarget().getClass().getName()
 		+"\n This class : "+joinPoint.getThis().getClass().getName());
 	}
+	
+	
+	@Before("spring.aspect.example.PointCutDefinitionsForCalculator.loggingOperationintCutForElementsAnnotatedWithAnnotation_LoggingRequired()")
+	public void logBefore_logAnnotate(JoinPoint jointPoint) {
+		logger.info("The method " + jointPoint.getSignature().getName() 
+		 + "() begins with " + Arrays.toString(jointPoint.getArgs()));
+	}
+	
+	 @Before("spring.aspect.example.PointCutDefinitionsForCalculator.accessParametersOfJoinPointAndReturnValueThroughThisPointrCut(targetClass, arg1, arg2)")
+	    public void logParameter(Object targetClass, double arg1, double arg2) {
+	        logger.info("Target class : " + targetClass.getClass().getName());
+	        logger.info("Arguments : "+arg1 +","+arg2);
+	    }
 }

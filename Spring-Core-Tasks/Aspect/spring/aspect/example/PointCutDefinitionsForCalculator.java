@@ -12,36 +12,36 @@ public class PointCutDefinitionsForCalculator {
 	public void loggingOperationPointCut() {
 	}
 	
-	@Pointcut("annotation(spring.aspect.example.PointCutDefinitionsForCalculator")
+	@Pointcut("@annotation(spring.aspect.example.LoggingRequired)")
 	public void loggingOperationintCutForElementsAnnotatedWithAnnotation_LoggingRequired() {
 		
 	}
-	
-	@Pointcut("within(spring.aspect.service.impl.*")
+
+	@Pointcut("within(spring.aspect.service.impl.*)")
 	public void withInPointCutForServicePackage(){
 		
 	}
 	
-	@Pointcut("within(spring.aspect.service.impl.ArithmeticCalculatorImpl")
+	@Pointcut("within(spring.aspect.service.impl.ArithmeticCalculatorImpl)")
 	public void withInPointCutForArithmeticCalculatorImpl() {
 		
 	}
 	
-	@Pointcut("within(spring.aspect.service.ArithmeticCalculator+")
+	@Pointcut("within(spring.aspect.service.ArithmeticCalculator+)")
 	public void withInPointCutForImplementationClassofArithmeticCalculatorInterface(){
 		
 	}
 	
-	@Pointcut("withInImplementationClassofArithmeticCalculatorInterface() ||"
+	@Pointcut("withInPointCutForImplementationClassofArithmeticCalculatorInterface() ||"
 			+ "withInPointCutForServicePackage()")
 	public void combiningTwoOrMorePointCuts() {
 		
 	}
 	
 	
-	@Pointcut("loggingOperationPointCut() && target(returnValue) && args(arg1, arg2)")
+	@Pointcut("loggingOperationPointCut() && target(targetClass) && args(arg1, arg2)")
 	public void accessParametersOfJoinPointAndReturnValueThroughThisPointrCut(
-			Object returnValue, double a, double b) {
+			Object targetClass, double arg1, double arg2) {
 		
 	}
 }

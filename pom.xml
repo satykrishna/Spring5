@@ -17,7 +17,12 @@
 
 			<dependency>
 				<groupId>org.aspectj</groupId>
-				<artifactId>aspectjtools</artifactId>
+				<artifactId>aspectjrt</artifactId>
+				<version>${aspect.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
 				<version>${aspect.version}</version>
 			</dependency>
 
