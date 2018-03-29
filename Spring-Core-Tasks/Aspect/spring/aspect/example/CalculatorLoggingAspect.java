@@ -22,20 +22,20 @@ public class CalculatorLoggingAspect {
 	private static Logger logger = 
 			Logger.getLogger(CalculatorLoggingAspect.class);
 	
-	@Before("spring.aspect.example.PointCutDefinitionsForCalculator.loggingOperation()")
+	@Before("spring.aspect.example.PointCutDefinitionsForCalculator.loggingOperationPointCut()")
 	public void logBefore(JoinPoint jointPoint) {
 		logger.info("The method " + jointPoint.getSignature().getName() 
 		 + "() begins with " + Arrays.toString(jointPoint.getArgs()));
 	}
 	
-	@After("spring.aspect.example.PointCutDefinitionsForCalculator.loggingOperation()")
+	@After("spring.aspect.example.PointCutDefinitionsForCalculator.loggingOperationPointCut()")
 	public void logAfter(JoinPoint jointPoint) {
 		logger.info("The method " + jointPoint.getSignature().getName() 
 		 + "() begins with " + Arrays.toString(jointPoint.getArgs()));
 	}
 	
 	@AfterReturning(
-			pointcut="spring.aspect.example.PointCutDefinitionsForCalculator.loggingOperation()",
+			pointcut="spring.aspect.example.PointCutDefinitionsForCalculator.loggingOperationPointCut()",
 			returning="result"
 			)
 	public void logAfterReturning(JoinPoint jointPoint, Object result) {
@@ -44,7 +44,7 @@ public class CalculatorLoggingAspect {
 	}
 	
 	@AfterThrowing(
-			pointcut = "spring.aspect.example.PointCutDefinitionsForCalculator.loggingOperation()",
+			pointcut = "spring.aspect.example.PointCutDefinitionsForCalculator.loggingOperationPointCut()",
 			throwing="e"
 			)
 	public void logAfterThrowingException(JoinPoint jp, Throwable e) {
@@ -53,7 +53,7 @@ public class CalculatorLoggingAspect {
 	}
 	
 	@AfterThrowing(
-		 pointcut = "spring.aspect.example.PointCutDefinitionsForCalculator.loggingOperation()",
+		 pointcut = "spring.aspect.example.PointCutDefinitionsForCalculator.loggingOperationPointCut()",
 		 throwing = "e"
 			)
 	public void logAfterThrowingSpecificException(JoinPoint jp, IllegalArgumentException e) {
@@ -62,7 +62,7 @@ public class CalculatorLoggingAspect {
 	}
 	
 	
-	@Around("spring.aspect.example.PointCutDefinitionsForCalculator.loggingOperation()")
+	@Around("spring.aspect.example.PointCutDefinitionsForCalculator.loggingOperationPointCut()")
 	public Object logAround(ProceedingJoinPoint jointPoint) throws Throwable {
 		logger.info("The method " + jointPoint.getSignature().getName() 
 				 + "() begins with " + Arrays.toString(jointPoint.getArgs()));
@@ -81,7 +81,7 @@ public class CalculatorLoggingAspect {
 	}
 	
 	
-	@Before("spring.aspect.example.PointCutDefinitionsForCalculator.loggingOperation()")
+	@Before("spring.aspect.example.PointCutDefinitionsForCalculator.loggingOperationPointCut()")
 	public void logBeforeForJointPoint(JoinPoint joinPoint) {
 		logger.info("Joint point is of Kind: " + joinPoint.getKind()
 		+" \nSignature declaring type: " + joinPoint.getSignature().getDeclaringType() + 

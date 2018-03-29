@@ -3,9 +3,11 @@ package spring.aspect.service.impl;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
+import spring.aspect.example.LoggingRequired;
 import spring.aspect.service.ArithmeticCalculator;
 
 @Component("arithmeticCalculator")
+@LoggingRequired
 public class ArithmeticCalculatorImpl implements ArithmeticCalculator {
 
 	private static final Logger logger = 
