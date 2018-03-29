@@ -33,48 +33,63 @@ public class AspectApp {
 	
 	public static void calculatorIntroductionAspect() {
 		appContext = new AnnotationConfigApplicationContext("spring.aspect.configuration");
-
+		ArithmeticCalculator calculator = 
+				appContext.getBean(ArithmeticCalculator.class);
+		calculator.add(4, 5);
+		MaxCalculator maxCalculator = (MaxCalculator)calculator;
+		MinCalculator minCalculator = (MinCalculator) calculator;
+		maxCalculator.max(3.4, 4.31);
+		minCalculator.min(11, 1.1);
+		UnitCalculator unitCalculator = 
+				appContext.getBean(UnitCalculator.class);
+		unitCalculator.kilogramToPound(75);
+		unitCalculator.kilometerToMile(5);
+	}
+	
+	
+	public static void countNoofCalculatorObjectsUsingIntroductionsInAspect() {
+		appContext = new AnnotationConfigApplicationContext("spring.aspect.configuration");
 		ArithmeticCalculator calculator = 
 				appContext.getBean(ArithmeticCalculator.class);
 		
 		calculator.add(4, 5);
 		
-//		Counter addCounter = (Counter)calculator;
+		Counter counter = (Counter)calculator;
 		
-//		System.out.println("\n SATYA " + addCounter.getCount());
+		System.out.println("The count is " + counter.getCount());
 		
-		MaxCalculator maxCalculator = (MaxCalculator)calculator;
+		calculator.mul(4, 5);
 		
-		MinCalculator minCalculator = (MinCalculator) calculator;
-		
-		maxCalculator.max(3.4, 4.31);
-		
-		Counter maxCounter = (Counter)maxCalculator;
-		
-		System.out.println("\nCount " +maxCounter.getCount());
-		
-		minCalculator.min(11, 1.1);
-		
-		Counter minCounter = (Counter)minCalculator;
-		
-		System.out.println("\nCount " +minCounter.getCount());
-		
+		System.out.println("The count is " + counter.getCount());
 		
 		UnitCalculator unitCalculator = 
 				appContext.getBean(UnitCalculator.class);
+		
 		unitCalculator.kilogramToPound(75);
+		
+		System.out.println("The count is " + counter.getCount());
+
 		unitCalculator.kilometerToMile(5);
+
+		System.out.println("The count is " + counter.getCount());
+
+		MaxCalculator maxCalculator = (MaxCalculator)calculator;
 		
-		Counter unitCounter = (Counter)unitCalculator;
+		maxCalculator.max(2, 1);
 		
-		System.out.println("\nCount " +unitCounter.getCount());
+		Counter c = (Counter)maxCalculator;
+		
+		System.out.println("The count is " + c.getCount());
+
 		
 	}
-	
 	
 	public static void main(String[] args) {
-		calculatorAspect();
+//		calculatorAspect();
 		System.out.println("--------------");
-		calculatorIntroductionAspect();
+//		calculatorIntroductionAspect();
+		countNoofCalculatorObjectsUsingIntroductionsInAspect();
 	}
+
+	
 }
