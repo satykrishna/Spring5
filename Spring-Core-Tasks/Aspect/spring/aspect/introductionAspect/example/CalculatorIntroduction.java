@@ -29,23 +29,18 @@ public class CalculatorIntroduction {
 			defaultImpl=MinCalculatorImpl.class)
 	public MinCalculator minCalculator;
 	
+	
 	@DeclareParents(
-			value="spring.aspect.service.impl.*CalculatorImpl ||"
-					+ "spring.aspect.introductions.service.impl.*CalculatorImpl ",
-			defaultImpl=CounterImpl.class)
+			value="spring.aspect..*CalculatorImpl ",
+			defaultImpl=CounterImpl.class)//includes classes in multiple packages
 	public Counter counter;
 	
-	@Pointcut("execution(* spring.aspect.service.*Calculator.*(..))")
-	public void arthimeticAndUnitCalculator(){
+	@Pointcut("execution(* spring.aspect..*Calculator.*(..))")
+	public void arthimeticUnitMaxMinCalculator(){
 		
 	}
 	
-	@Pointcut("execution(* spring.aspect.introuctions.service.*Calculator.*(..))")
-	public void maxMinCalc() {
-		
-	}
-	
-	@After("arthimeticAndUnitCalculator()"
+	@After("arthimeticUnitMaxMinCalculator()"
 			+ "&& this(counter)"
 			)
 	public void incrementCounter(Counter counter) {
