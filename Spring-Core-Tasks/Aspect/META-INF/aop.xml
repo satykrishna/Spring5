@@ -1,0 +1,11 @@
+<!DOCTYPE aspectj PUBLIC "-//AspectJ//DTD//EN"
+    "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
+<aspectj>
+    <weaver>
+        <include within="spring.aspect.example.weaver.*" />
+    </weaver>
+    <aspects>
+        <aspect
+            name="spring.aspect.example.ComplexCachingAspect" />
+    </aspects>
+</aspectj>

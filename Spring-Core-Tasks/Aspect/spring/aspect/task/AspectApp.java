@@ -77,6 +77,9 @@ public class AspectApp {
 		
 		complexCalculator.add(new Complex(2, 3), new Complex(4, 5));
 		complexCalculator.sub(new Complex(1, 4), new Complex(4, 5 ));
+		complexCalculator.add(new Complex(2, 3), new Complex(4, 5));
+		complexCalculator.sub(new Complex(1, 4), new Complex(4, 5 ));
+
 	}
 	
 	public static void main(String[] args) {

@@ -10,7 +10,7 @@ import org.springframework.context.annotation.EnableLoadTimeWeaving;
 @ComponentScan(basePackages={"spring.aspect.service.impl", 
 							 "spring.aspect.example",
 							 "spring.aspect.introductionAspect.example"})
-@EnableLoadTimeWeaving
+//@EnableLoadTimeWeaving
 public class CalculatorConfiguration {
 
 

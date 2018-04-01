@@ -15,8 +15,8 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 
-//@Component
-//@Aspect
+@Component
+@Aspect
 
 public class ComplexCachingAspect {
 
@@ -27,16 +27,17 @@ public class ComplexCachingAspect {
 	private static final Map<String, Complex> cache = 
 			new ConcurrentHashMap<String, Complex>();
 	
-    @Pointcut("call(public *.Complex.new(int, int))")
-    public void cacheComplexNumber() {
+
+    @Pointcut("execution(public * spring.aspect.service.ComplexArithmetic.*(org.Spring.model.Complex, org.Spring.model.Complex))"
+    		+ "&& args( a,  b)")
+    public void cacheComplexResultAfteranOperation(Complex a, Complex b) {
     	
     }
 
-    @Around("cacheComplexNumber()")
-    public Object cacheAround(ProceedingJoinPoint jointPoint) throws Throwable {
+    @Around("cacheComplexResultAfteranOperation(a, b)")
+    public Object cacheAround(ProceedingJoinPoint jointPoint, Complex a, Complex b) throws Throwable {
     	
-    	Object[] args = jointPoint.getArgs();
-    	String key = (int)args[0] + ", " + (int)args[1];
+    	String key = a + ","+b;
     	
     	Complex complex = cache.get(key);
     	if(complex == null) {
