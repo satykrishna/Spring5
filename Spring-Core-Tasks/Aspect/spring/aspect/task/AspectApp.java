@@ -1,5 +1,6 @@
 package spring.aspect.task;
 
+import org.Spring.model.Complex;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -8,6 +9,7 @@ import spring.aspect.introductions.service.Counter;
 import spring.aspect.introductions.service.MaxCalculator;
 import spring.aspect.introductions.service.MinCalculator;
 import spring.aspect.service.ArithmeticCalculator;
+import spring.aspect.service.ComplexArithmetic;
 import spring.aspect.service.UnitCalculator;
 
 public class AspectApp {
@@ -51,44 +53,38 @@ public class AspectApp {
 		appContext = new AnnotationConfigApplicationContext("spring.aspect.configuration");
 		ArithmeticCalculator calculator = 
 				appContext.getBean(ArithmeticCalculator.class);
-		
 		calculator.add(4, 5);
-		
 		Counter counter = (Counter)calculator;
-		
 		System.out.println("The count is " + counter.getCount());
-		
 		calculator.mul(4, 5);
-		
 		System.out.println("The count is " + counter.getCount());
-		
 		UnitCalculator unitCalculator = 
 				appContext.getBean(UnitCalculator.class);
-		
 		unitCalculator.kilogramToPound(75);
-		
 		System.out.println("The count is " + counter.getCount());
-
 		unitCalculator.kilometerToMile(5);
-
 		System.out.println("The count is " + counter.getCount());
-
 		MaxCalculator maxCalculator = (MaxCalculator)calculator;
-		
 		maxCalculator.max(2, 1);
-		
 		Counter c = (Counter)maxCalculator;
-		
 		System.out.println("The count is " + c.getCount());
+	}
 
+	public static void cacheComplexNumberObjectsUsingAspects() {
+		appContext = new AnnotationConfigApplicationContext("spring.aspect.configuration");
+
+		ComplexArithmetic complexCalculator = appContext.getBean("complexCalculator", ComplexArithmetic.class);
 		
+		complexCalculator.add(new Complex(2, 3), new Complex(4, 5));
+		complexCalculator.sub(new Complex(1, 4), new Complex(4, 5 ));
 	}
 	
 	public static void main(String[] args) {
 //		calculatorAspect();
-		System.out.println("--------------");
 //		calculatorIntroductionAspect();
-		countNoofCalculatorObjectsUsingIntroductionsInAspect();
+//		countNoofCalculatorObjectsUsingIntroductionsInAspect();
+		System.out.println("--------------");
+		cacheComplexNumberObjectsUsingAspects();
 	}
 
 	

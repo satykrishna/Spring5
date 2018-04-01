@@ -1,4 +1,4 @@
-package org.spring.java8.util;
+package org.Spring.java8.util;
 
 import java.util.function.Supplier;
 

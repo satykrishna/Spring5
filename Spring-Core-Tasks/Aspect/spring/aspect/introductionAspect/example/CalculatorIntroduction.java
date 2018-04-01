@@ -31,7 +31,8 @@ public class CalculatorIntroduction {
 	
 	
 	@DeclareParents(
-			value="spring.aspect..*CalculatorImpl ",
+//			value="spring.aspect..*CalculatorImpl ",
+			value="spring.aspect.service.impl.*CalculatorImpl ",
 			defaultImpl=CounterImpl.class)//includes classes in multiple packages
 	public Counter counter;
 	

@@ -1,7 +1,8 @@
 package spring.aspect.introductions.service.impl;
 
 import spring.aspect.introductions.service.MaxCalculator;
-import static org.spring.java8.util.AppLogger.*;
+
+import static org.Spring.java8.util.AppLogger.*;
 import static org.apache.log4j.Level.*;
 
 import org.apache.log4j.Logger;
