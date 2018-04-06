@@ -19,7 +19,18 @@ public class ShoppingCart {
 		items.add(product);
 	}
 	
+	public void addItems(List<Product> newItems) {
+		items.addAll(newItems);
+	}
+	
 	public List<Product> getItems() {
 		return items;
 	}
+
+	@Override
+	public String toString() {
+		return "ShoppingCart [items=" + items + "]";
+	}
+	
+	
 }
