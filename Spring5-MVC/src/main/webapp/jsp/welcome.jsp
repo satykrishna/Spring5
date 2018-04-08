@@ -8,5 +8,7 @@
 	Today is
 	<fmt:formatDate value="${today}" pattern="yyyy-MM-dd" />
 	.
+	<br>
+	Handling Time : "${handlingTime}" in ms
 </body>
 </html>

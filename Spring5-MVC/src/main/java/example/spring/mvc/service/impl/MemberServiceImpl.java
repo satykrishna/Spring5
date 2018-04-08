@@ -1,7 +1,10 @@
 package example.spring.mvc.service.impl;
 
-import java.util.Arrays;
-import java.util.Collections;
+import static java.util.Collections.emptyList;
+
+import java.util.ArrayList;
+
+import static java.util.Arrays.*;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -14,7 +17,7 @@ import example.spring.mvc.service.MemberService;
 @Service
 public class MemberServiceImpl implements MemberService {
 
-	private List<Member> memberList;
+	private List<Member> memberList = new ArrayList<Member>();
 	
 	@Override
 	public List<Member> list() {
@@ -23,9 +26,9 @@ public class MemberServiceImpl implements MemberService {
 	
 	@PostConstruct
 	public void init() {
-		memberList = Collections.emptyList();
-		memberList.addAll(Arrays.asList(new Member("SATYA", "KRISHNA", "A1001")));
+		memberList.addAll(asList(new Member("Satya", "Krishna", "A1001")));
 	}
+	
 
 	@Override
 	public void add(Member member) {

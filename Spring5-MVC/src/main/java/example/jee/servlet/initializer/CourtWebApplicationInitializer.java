@@ -3,6 +3,7 @@ package example.jee.servlet.initializer;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import example.spring.mvc.configuration.CourtConfiguration;
+import example.spring.mvc.configuration.MVCViewConfiguration;
 
 public class CourtWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -13,7 +14,7 @@ public class CourtWebApplicationInitializer extends AbstractAnnotationConfigDisp
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[]{CourtConfiguration.class};
+		return new Class[]{CourtConfiguration.class, MVCViewConfiguration.class};
 	}
 
 	@Override
