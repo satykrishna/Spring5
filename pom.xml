@@ -153,6 +153,6 @@
 	<modules>
 		<module>Spring-Core-Tasks</module>
 		<module>Spring5-MVC</module>
-		<module>Spring5-Pojo</module>
+		
 	</modules>
 </project>

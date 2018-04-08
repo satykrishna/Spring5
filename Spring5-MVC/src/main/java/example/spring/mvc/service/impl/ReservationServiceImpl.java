@@ -36,7 +36,7 @@ public class ReservationServiceImpl implements ReservationService {
 	public void init() {
 
 		reservations.addAll(Arrays.asList(new Reservation("Tennis#1", new Date(2018, 10, 21), 16, new Player("Roger", "N/A"), TENNIS),
-				new Reservation("Tennis #2", new Date(2018, 10, 12), 20, new Player("James", "N/A"), TENNIS)));
+				new Reservation("Tennis#2", new Date(2018, 10, 12), 20, new Player("James", "N/A"), TENNIS)));
 
 	}
 }

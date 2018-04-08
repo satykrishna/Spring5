@@ -10,16 +10,18 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @ComponentScan(basePackages="example.spring.mvc.controller")
-@Import(value=CourtConfiguration.class)
-public class MVCViewConfiguration {
+public class MVCViewConfiguration  implements WebMvcConfigurer {
 
 	@Bean
 	public InternalResourceViewResolver internalViewResolver() {
-		
 		InternalResourceViewResolver viewResolver = 
-				new InternalResourceViewResolver("/WEB-INF/jsp/", ".jsp");
-		
+				new InternalResourceViewResolver("/jsp/", ".jsp");
 		return viewResolver;
+	}
+	
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/").setViewName("welcome");
 	}
 	
 }
