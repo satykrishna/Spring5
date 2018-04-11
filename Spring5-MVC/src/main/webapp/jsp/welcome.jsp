@@ -10,5 +10,9 @@
 	.
 	<br>
 	Handling Time : "${handlingTime}" in ms
+	
+	Locale : ${pageContext.response.locale}
+	
+	
 </body>
 </html>
