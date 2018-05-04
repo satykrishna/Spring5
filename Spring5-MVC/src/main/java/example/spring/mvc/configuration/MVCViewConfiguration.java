@@ -66,6 +66,7 @@ public class MVCViewConfiguration  implements WebMvcConfigurer {
 		return cookieLocaleResolver;
 	}
 
+	//Externalize localization
 	@Bean
 	public ReloadableResourceBundleMessageSource messageSource() {
 		ReloadableResourceBundleMessageSource messageSource = 
@@ -73,5 +74,6 @@ public class MVCViewConfiguration  implements WebMvcConfigurer {
 		messageSource.setBasename("messages");
 		return messageSource;
 	}
+
 	
 }
