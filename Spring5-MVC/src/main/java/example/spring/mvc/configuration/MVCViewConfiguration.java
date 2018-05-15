@@ -13,17 +13,20 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.ResourceBundleViewResolver;
 
 import example.spring.mvc.interceptor.MeasurementInterceptor;
 
 @Configuration
 @ComponentScan(basePackages="example.spring.mvc.controller")
+@Import(CourtConfiguration.class)
 public class MVCViewConfiguration  implements WebMvcConfigurer {
 
 	@Bean
 	public InternalResourceViewResolver internalViewResolver() {
 		InternalResourceViewResolver viewResolver = 
 				new InternalResourceViewResolver("/jsp/", ".jsp");
+		viewResolver.setOrder(0);
 		return viewResolver;
 	}
 	
@@ -72,8 +75,16 @@ public class MVCViewConfiguration  implements WebMvcConfigurer {
 		ReloadableResourceBundleMessageSource messageSource = 
 				new ReloadableResourceBundleMessageSource();
 		messageSource.setBasename("messages");
+		messageSource.setCacheMillis(2);
 		return messageSource;
 	}
 
+	public ResourceBundleViewResolver viewResolver() {
+		ResourceBundleViewResolver viewResolver = 
+				new ResourceBundleViewResolver();
+		viewResolver.setBasename("views-file");
+		viewResolver.setOrder(1);
+		return viewResolver;
+	}
 	
 }

@@ -11,6 +11,10 @@ public class Player {
 		this.phone = phone;
 	}
 	
+	public Player() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getName() {
 		return name;
 	}

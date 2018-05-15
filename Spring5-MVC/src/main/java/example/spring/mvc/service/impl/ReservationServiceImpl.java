@@ -12,6 +12,8 @@ import javax.annotation.PostConstruct;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import example.spring.mvc.exception.ReservationNotAvailableException;
+import example.spring.mvc.models.PeriodicReservation;
 import example.spring.mvc.models.Player;
 import example.spring.mvc.models.Reservation;
 import example.spring.mvc.models.SportType;
@@ -24,12 +26,11 @@ public class ReservationServiceImpl implements ReservationService {
 
 	public static final SportType TENNIS = new SportType(1, "Tennis");
 	public static final SportType SOCCER = new SportType(2, "Soccer");
-	private final List<Reservation> reservations = new ArrayList<>();
+	private final List<Reservation> reservations = new ArrayList<Reservation>();
 
 	@Override
 	public List<Reservation> query(String courtName) {
-		return reservations.stream().filter(reservation-> Objects.equals(reservation.getCourtName(), courtName))
-				.collect(toList());
+		return reservations.stream().filter(reservation -> Objects.equals(reservation.getCourtName(), courtName)).collect(toList());
 	}
 
 	@PostConstruct
@@ -38,5 +39,24 @@ public class ReservationServiceImpl implements ReservationService {
 		reservations.addAll(Arrays.asList(new Reservation("Tennis#1", new Date(2018, 10, 21), 16, new Player("Roger", "N/A"), TENNIS),
 				new Reservation("Tennis#2", new Date(2018, 10, 12), 20, new Player("James", "N/A"), TENNIS)));
 
+	}
+
+	@Override
+	public void makePeriodicReservation(PeriodicReservation reservation) throws ReservationNotAvailableException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void make(Reservation reservation) throws ReservationNotAvailableException {
+		long count = reservations.stream().filter(made -> Objects.equals(made.getCourtName(), reservation.getCourtName()))
+				.filter(made -> Objects.equals(made.getDate(), reservation.getDate())).
+				filter(made -> made.getHour() == reservation.getHour()).count();
+		if (count > 0) {
+			throw new ReservationNotAvailableException(reservation.getCourtName(), reservation.getDate(), reservation.getHour());
+		}
+		else {
+			reservations.add(reservation);
+		}
 	}
 }
