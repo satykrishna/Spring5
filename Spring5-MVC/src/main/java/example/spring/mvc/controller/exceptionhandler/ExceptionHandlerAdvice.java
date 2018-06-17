@@ -1,4 +1,4 @@
-package example.spring.mvc.controller.exceptionhandler;
+	package example.spring.mvc.controller.exceptionhandler;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,8 +13,8 @@ public class ExceptionHandlerAdvice {
 		return "reservationNotAvailable";
 	}
 	
-	@ExceptionHandler(Exception.class) 
+/*	@ExceptionHandler(Exception.class) 
 	public String handleDefaultException(Exception e) {
 		return "error";
-	}
+	}*/
 }

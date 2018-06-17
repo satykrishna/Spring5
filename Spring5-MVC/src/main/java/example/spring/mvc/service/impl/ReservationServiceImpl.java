@@ -1,11 +1,13 @@
 package example.spring.mvc.service.impl;
 
+import static java.util.stream.Collectors.toList;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import static java.util.stream.Collectors.*;
 
 import javax.annotation.PostConstruct;
 
@@ -42,9 +44,17 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public void makePeriodicReservation(PeriodicReservation reservation) throws ReservationNotAvailableException {
-		// TODO Auto-generated method stub
-
+	public void makePeriodicReservation(PeriodicReservation periodicReservation) throws ReservationNotAvailableException {
+		 LocalDate fromDate = periodicReservation.getFromDate();
+		 while (fromDate.isBefore(periodicReservation.getToDate())) {
+	            Reservation reservation = new Reservation();
+	            reservation.setCourtName(periodicReservation.getCourtName());
+	            reservation.setDate(new Date(fromDate.toString()));
+	            reservation.setHour(periodicReservation.getHour());
+	            reservation.setPlayer(periodicReservation.getPlayer());
+	            make(reservation);
+	            fromDate = fromDate.plusDays(periodicReservation.getPeriod());
+	        }
 	}
 
 	@Override
@@ -57,6 +67,24 @@ public class ReservationServiceImpl implements ReservationService {
 		}
 		else {
 			reservations.add(reservation);
+		}
+	}
+
+	@Override
+	public List<SportType> getAllSportTypes() {
+		return Arrays.asList(TENNIS, SOCCER);
+	}
+
+	@Override
+	public SportType getSportType(int sportType) {
+		
+		switch (sportType) {
+		case 1:
+			return TENNIS;
+		case 2:
+			return SOCCER;
+		default:
+			return null;
 		}
 	}
 }

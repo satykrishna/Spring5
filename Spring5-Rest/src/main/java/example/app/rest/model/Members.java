@@ -1,0 +1,31 @@
+package example.app.rest.model;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Members {
+
+	@XmlElement(name = "member")
+	private List<Member> members = new ArrayList<>();
+
+	public List<Member> getMembers() {
+		return members;
+	}
+
+	public void setMembers(List<Member> members) {
+		this.members = members;
+	}
+	
+	public void addMembers(List<Member> members) {
+		this.members.addAll(members);
+	}
+}

@@ -18,7 +18,10 @@ import org.springframework.web.servlet.view.ResourceBundleViewResolver;
 import example.spring.mvc.interceptor.MeasurementInterceptor;
 
 @Configuration
-@ComponentScan(basePackages="example.spring.mvc.controller")
+@ComponentScan(basePackages={"example.spring.mvc.controller",
+							 "example.spring.mvc.validator"
+								
+})
 @Import(CourtConfiguration.class)
 public class MVCViewConfiguration  implements WebMvcConfigurer {
 

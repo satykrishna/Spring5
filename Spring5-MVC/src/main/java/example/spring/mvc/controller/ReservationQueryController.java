@@ -1,11 +1,10 @@
 package example.spring.mvc.controller;
 
-import static java.util.Collections.*;
+import static java.util.Collections.emptyList;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
