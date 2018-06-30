@@ -1,37 +1,35 @@
 package example.app.rest.config;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.oxm.Marshaller;
-import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-import org.springframework.web.servlet.View;
-import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.view.BeanNameViewResolver;
-import org.springframework.web.servlet.view.xml.MarshallingView;
-
-import example.app.rest.model.Member;
-import example.app.rest.model.Members;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
 @Configuration
 @ComponentScan(basePackages = "example.app.rest")
 public class RestAppConfiguration {
 
 	@Bean
-	public View memberTemplate() {
-		return new MarshallingView(jaxb2Marshaller());
+	public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
+		RequestMappingHandlerAdapter adapter = 
+				new RequestMappingHandlerAdapter();
+		adapter.setMessageConverters(Arrays.asList(jsonMessageConverter(), xmlMessageConverter()));
+		return adapter;
+	}
+	
+	@Bean
+	public MappingJackson2HttpMessageConverter jsonMessageConverter() {
+		return new MappingJackson2HttpMessageConverter();
+	}
+	
+	@Bean
+	public Jaxb2RootElementHttpMessageConverter xmlMessageConverter() {
+		return new Jaxb2RootElementHttpMessageConverter();
 	}
 
-	@Bean
-	public Marshaller jaxb2Marshaller() {
-		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-		marshaller.setClassesToBeBound(Members.class, Member.class);
-		return marshaller;
-	}
-
-	@Bean
-	public ViewResolver viewResolver() {
-		return new BeanNameViewResolver();
-	}
 
 }
